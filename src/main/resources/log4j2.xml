@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  	<Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} %5p [%t] %c{1.} - %m%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+    	<!-- Application Loggers -->
+        <Logger name="com.anbr.frame" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        
+        <!-- 3rdparty Loggers -->
+        <Logger name="org.springframework.core" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework.beans" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework.context" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework.web" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+        </Logger>
+        
+        <!-- Root Logger -->
+        <Root level="INFO">
+       		<AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

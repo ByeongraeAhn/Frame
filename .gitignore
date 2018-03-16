@@ -1,0 +1,14 @@
+/target/
+*.class
+[Tt]humbs.db
+.DS_Store
+.settings/
+.classpath
+.project
+/bin/
+/logs/
+
+# Package Files #
+*.jar
+*.war
+*.ear

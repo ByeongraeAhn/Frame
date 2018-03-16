@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd">
+	
+	<!-- 하이버네이트의 SessionFactory 에 상응하는 jpa의 EntityManagerFactory 등록 -->
+	<jpa:repositories base-package="com.anbr.frame.repository" entity-manager-factory-ref="entityManagerFactory"/>
+	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop> <!-- Hsql 형식에 맞게 변환해주는 클래스 -->
+				<prop key="hibernate.connection.pool_size">10</prop>
+				<prop key="hibernate.connection.shutdown">true</prop> <!-- 마지막 연결이 끊어지면 데이터베이스 shutdown 하는 플래그 -->
+				<prop key="hibernate.show_sql">true</prop> <!-- SQL 출력 -->
+				<prop key="hibernate.hbm2ddl.auto">create</prop> <!-- 테이블 자동 생성 -->
+			</props>
+		</property> <!-- 엔티티 정의된 클래스들이 있는 패키지 등록 -->
+		<property name="packagesToScan" value="com.anbr.frame.domain" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+</beans>
