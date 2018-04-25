@@ -107,6 +107,18 @@
 			<version>2.10.4</version>
 		</dependency>
 		
+		<dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+		
 		<!-- fileupload (requires Java 1.5 or later) -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
