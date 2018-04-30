@@ -8,10 +8,10 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,6 +50,13 @@ public class HomeController {
 	@GetMapping("/samples")
 	public @ResponseBody List<Sample> findAll() {
 		return sampleService.findAll();
+	}
+	
+	@GetMapping("/cachetest")
+	public String test(Locale locale, Model model) {
+		logger.info("Welcome cache test! The client locale is {}.", locale);
+		model.addAttribute("serverTime", sampleService.cacheTest() );
+		return "home";
 	}
 	
 	// win: curl -v -H "Content-Type: application/json" -d {\"name\":\"sam\"} -X POST http://localhost:8080/frame/sample
