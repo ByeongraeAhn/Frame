@@ -44,6 +44,7 @@ public class SampleServiceCacheTest {
 		Cache cache = cacheManager.getCache("sample");
 		assertNotNull(cache);
 		assertNotNull(cache.get(sample.getId()));
+		System.out.println("캐싱된 아이템 : " + cache.get(sample.getId()).get());
 		
 		sw.start("get cached data");
 		sampleService.findById(sample.getId());
