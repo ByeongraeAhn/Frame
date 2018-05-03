@@ -8,12 +8,12 @@
 	<cache:annotation-driven cache-manager="cacheManager" />
 	
 	<!-- EhCache -->
-<!-- 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" p:cache-manager-ref="ehcache"/>
-	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:config-location="classpath:ehcache.xml"/> -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" p:cache-manager-ref="ehcache"/>
+	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:config-location="classpath:ehcache.xml"/>
 
 
 	<!-- Redis -->
-    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+<!--     <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
         <constructor-arg name="template" ref="redisTemplate"/>
    	</bean>
 	
@@ -27,6 +27,6 @@
 	<bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="jedisConnFactory"
-    />
+    /> -->
   
 </beans>

@@ -6,6 +6,14 @@
 	
 	<diskStore path="java.io.tmpdir" />
 	
+	<cacheManagerPeerProviderFactory
+    class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+    properties="peerDiscovery=automatic, 
+                    multicastGroupAddress=230.0.0.100, multicastGroupPort=1234" />
+                    
+	<cacheManagerPeerListenerFactory
+    class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory" />
+	
 	<cache name="sample" 
 				maxEntriesLocalHeap="100000"
 				maxEntriesLocalDisk="10000" 
@@ -15,6 +23,10 @@
 				timeToLiveSeconds="600"
 				memoryStoreEvictionPolicy="LFU" 
 				transactionalMode="off">
+		<bootstrapCacheLoaderFactory
+           class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory"
+           properties="bootstrapAsynchronously=true, maximumChunkSizeBytes=5000000" />
+		<cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" />
 		<persistence strategy="localTempSwap" />
 	</cache>
 </ehcache>

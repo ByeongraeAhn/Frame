@@ -32,7 +32,7 @@ public class CacheMangerTest {
 		System.out.println("첫번째 캐싱 메서드 : " + sampleService.cacheTest());
 		Cache cache = cacheManager.getCache("sample");
 		//cache.put("sample", "testitem1"); 
-		//System.out.println("캐싱된 아이템 : " + cache.get;
+		System.out.println("캐싱된 아이템 : " + cache.get("sample").get());
 		Thread.sleep(2000);
 		System.out.println("두번째 캐싱 메서드 : " + sampleService.cacheTest());
 	}
